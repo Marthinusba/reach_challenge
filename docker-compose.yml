@@ -1,0 +1,31 @@
+version: "1.1"
+services:
+  docker_postgresql:
+      image: postgres:11
+      container_name: docker_postgresql 
+      environment:
+          POSTGRES_USER: "postgres_user"
+          POSTGRES_PASSWORD: "postgres_password"
+          POSTGRES_DB: "postgres_db"
+      networks:
+      - docker_network
+
+  python_program:
+    build:
+      context: . 
+      dockerfile: ./python_program
+    container_name: docker_python_code 
+    image: docker_python_image 
+    restart: on-failure
+    environment:
+      PG_USERNAME: "postgres_user"
+      PG_PASSWORD: "postgres_password"
+      PG_DB: "postgres_db"
+      CURRENT_IMAGE: "docker_python_image"
+    networks:
+      - etl_network
+
+networks:
+  docker_network:
+    driver: bridge
+    name: etl_network

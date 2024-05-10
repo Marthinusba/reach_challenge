@@ -1,0 +1,12 @@
+FROM python:3.9-slim
+
+ENV HOME=.
+#
+RUN mkdir -p $HOME
+COPY code-requirements.txt $HOME
+COPY import_requests.py $HOME
+#Add required python packages here for jobs, note dagster-* packages are required
+RUN pip install -r $HOME/code-requirements.txt
+
+
+CMD python $HOME/import_requests.py
