@@ -1,4 +1,18 @@
 def prepare_data(json_api_retrun):
+    """
+    Prepare data values to insert into seperate tables
+
+    create list of the data values which corresponds with each specified table
+    Parameters
+    ----------
+    json_api_retrun: json object
+        the json blob returned by the api
+    Returns
+    -------
+    table_values: list
+        list of values for specific table identified
+
+    """
     data_keys = ['cases','testing','outcomes']
     listedinch = []
     table_values = []  
@@ -13,6 +27,23 @@ def prepare_data(json_api_retrun):
 
 
 def iterate_nested_json_for_loop(json_obj,listed):
+    """
+    Unnest json object
+
+    The json blob is drilled down and unnested to the value level to create a flat 
+    falt structure of the values
+    Parameters
+    ----------
+    json_obj: json object
+        the json blob returned by the api
+    listed: list
+        an empty list which will contain the values
+    Returns
+    -------
+    listed: list
+        list of values
+
+    """
     for _, value in json_obj.items():
         if isinstance(value, dict):
             iterate_nested_json_for_loop(value,listed)
