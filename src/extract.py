@@ -5,6 +5,21 @@ from time import sleep
 from random import randint
 
 class apiData():
+    """
+    A class to represent a person.
+
+    ...
+
+    Parameters
+    ----------
+    api_repsonse : json object
+        api_repsonse
+
+    Methods
+    -------
+    read_json():
+        Parse json object to dictionary
+    """
     def __init__(self,api_response):
         self.api_response = api_response
     def read_json(self):
@@ -26,7 +41,6 @@ def call_api(api_url):
         json object returned by api
 
     """
-    #if error dont pull in data
     try:
         data = requests.get(api_url,timeout=10).json()
     #timeout exception

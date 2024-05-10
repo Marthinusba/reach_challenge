@@ -5,7 +5,7 @@ def prepare_data(json_api_retrun):
     create list of the data values which corresponds with each specified table
     Parameters
     ----------
-    json_api_retrun: json object
+    json_api_retrun: dictionary
         the json blob returned by the api
     Returns
     -------
@@ -42,7 +42,7 @@ def iterate_nested_json_for_loop(json_obj,listed):
     falt structure of the values
     Parameters
     ----------
-    json_obj: json object
+    json_obj: dictionary
         the json blob returned by the api
     listed: list
         an empty list which will contain the values
