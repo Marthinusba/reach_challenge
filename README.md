@@ -42,6 +42,7 @@ The projects performas extraction, transfoarmation and loading processes on the 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 Certain assumptions are made with the deploying of the projects, such as experience with git and linux commands and having git and docker installed.
