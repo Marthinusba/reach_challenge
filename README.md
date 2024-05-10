@@ -6,9 +6,6 @@
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -24,12 +21,11 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
       </ul>
     </li>
   </ol>
 </details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -40,17 +36,11 @@ The projects performas extraction, transfoarmation and loading processes on the 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
 * [![Python][python]][python-url]
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -58,7 +48,6 @@ Certain assumptions are made with the deploying of the projects, such as experie
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * git
 * docker
 
@@ -81,8 +70,6 @@ Steps to install and run program
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -97,9 +84,6 @@ Steps to install and run program
 3. The password required is ```postgres_password```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
