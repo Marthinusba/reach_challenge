@@ -47,6 +47,8 @@ The projects performas extraction, transfoarmation and loading processes on the 
 
 Certain assumptions are made with the deploying of the projects, such as experience with git and linux commands and having git and docker installed.
 
+The ERD of the database is shown below:
+![ERD](./erd.png)
 ### Prerequisites
 
 * git
