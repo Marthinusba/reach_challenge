@@ -1,4 +1,4 @@
--- Date Dimension Table
+-- Cases_Dimension Table
 CREATE TABLE IF NOT EXISTS Cases_Dimension (
     Cases_ID UUID PRIMARY KEY,
     Last_Update_ET TIMESTAMP,
