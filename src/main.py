@@ -17,8 +17,8 @@ def main():
         api_url = "https://api.covidtracking.com/v2/us/daily/"+str(current_date)+".json"
 
         api_retrun = api_data.read_json(call_api(api_url))
-        something_it = prepare_data(api_retrun)
-        iterate_table_insert(tables,something_it)
+        prepared_values = prepare_data(api_retrun)
+        iterate_table_insert(tables,prepared_values)
         
         
 

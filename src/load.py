@@ -1,5 +1,6 @@
 import psycopg2
 import uuid
+import os
 
 def execute_scripts_from_file(filename,curnection):
     # Open and read the file as a single buffer
@@ -23,10 +24,10 @@ def execute_scripts_from_file(filename,curnection):
 
 def put_into_database(values,table,unique_id):
 
-    conn = psycopg2.connect(database = "postgres",
-                            user = "postgres",
-                            password = "12345",
-                            host = "localhost",
+    conn = psycopg2.connect(database = os.getenv('PG_DB'),
+                            user = os.getenv('PG_USERNAME'),
+                            password = os.getenv('PG_PASSWORD'),
+                            host = os.getenv('DB_HOST'),
                             port = "5432")
     
     cur = conn.cursor()  

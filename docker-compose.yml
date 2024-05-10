@@ -8,7 +8,7 @@ services:
           POSTGRES_PASSWORD: "postgres_password"
           POSTGRES_DB: "postgres_db"
       networks:
-      - docker_network
+      - etl_network
 
   python_program:
     build:
@@ -21,11 +21,12 @@ services:
       PG_USERNAME: "postgres_user"
       PG_PASSWORD: "postgres_password"
       PG_DB: "postgres_db"
+      DB_HOST: "docker_postgresql"
       CURRENT_IMAGE: "docker_python_image"
     networks:
       - etl_network
 
 networks:
-  docker_network:
+  etl_network:
     driver: bridge
     name: etl_network
