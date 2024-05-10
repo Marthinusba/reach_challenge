@@ -86,6 +86,16 @@ Currently the current date is set as  ```current_date = '2021-01-01'```  in the 
     ```
 3. The password required is ```postgres_password```
 
+4. Example to query all the tabls
+    ```sql
+    select * from Cases_Dimension
+    join Cases_Fact on Cases_Dimension.cases_id = Cases_Fact.cases_id
+    join Testing_Fact on Cases_Dimension.cases_id = Testing_Fact.cases_id
+    join Hospitalization_Fact on Cases_Dimension.cases_id = Hospitalization_Fact.cases_id
+    join Death_Fact on Cases_Dimension.cases_id = Death_Fact.cases_id
+    ;
+    ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
