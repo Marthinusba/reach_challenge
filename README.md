@@ -70,11 +70,11 @@ Steps to install and run program
    ```sh
    git clone https://github.com/Marthinusba/reach_challenge.git
    ```
-3. Change directory to reach-challenge
+2. Change directory to reach-challenge
    ```sh
    cd reach-challenge
    ```
-4. Run docker compose command
+3. Run docker compose command
    ```sh
    docker-compose up --build
    ```
@@ -86,23 +86,15 @@ Steps to install and run program
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-To access the Postgres database in docker to perform analysis.
+1. To access the Postgres database in docker to perform analysis.
     ```sh
     docker exec -it docker_postgresql bash
     ```
-And to access the database:
+2. And to access the database:
     ```sh
     psql -h docker_postgresql -d postgres_db -U postgres_user
     ```
-The password required is ```postgres_password```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+3. The password required is ```postgres_password```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
