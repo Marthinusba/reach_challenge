@@ -12,6 +12,20 @@ class api_data():
         return json_data
 
 def call_api(api_url):
+    """
+    Call api
+
+    Call and return api information and ensure api is treated kindly
+
+    Parameters
+    ----------
+    None
+    Returns
+    -------
+    data: json object
+        json object returned by api
+
+    """
     #if error dont pull in data
     try:
         data = requests.get(api_url,timeout=10).json()

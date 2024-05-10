@@ -3,7 +3,7 @@
 
 from datetime import datetime 
 import pandas as pd
-from extract import call_api,api_data
+from extract import call_api,apiData
 from transform import prepare_data
 from load import iterate_table_insert
 
@@ -29,7 +29,7 @@ def main():
         api_url = "https://api.covidtracking.com/v2/us/daily/"+str(current_date)+".json"
 
         #step to extract the daiky json blob from the api        
-        api_retrun = api_data.read_json(call_api(api_url))
+        api_retrun = apiData.read_json(call_api(api_url))
         #step to prepare the data to be ingested
         prepared_values = prepare_data(api_retrun)
         #step to create the tables if not created and insert the daily data
@@ -37,4 +37,5 @@ def main():
         
         
 
-if __name__ == "__main__": main()
+if __name__ == "__main__": 
+        main()
