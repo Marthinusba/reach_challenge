@@ -16,7 +16,6 @@ services:
       dockerfile: ./python_program
     container_name: docker_python_code 
     image: docker_python_image 
-    restart: on-failure
     environment:
       PG_USERNAME: "postgres_user"
       PG_PASSWORD: "postgres_password"

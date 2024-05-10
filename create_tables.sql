@@ -55,7 +55,8 @@ CREATE TABLE IF NOT EXISTS Death_Fact (
 
 -- Field Definitions Dimension Table
 CREATE TABLE IF NOT EXISTS Field_Definitions_Dimension (
-    Field_Name VARCHAR(100) NOT NULL PRIMARY KEY,
+    Field_Definitions_Dimension_ID UUID NOT NULL PRIMARY KEY,
+    Field_Name VARCHAR(100) ,
     Field_Path VARCHAR(100),
     Deprecated BOOLEAN,
     Prior_Names VARCHAR(100)

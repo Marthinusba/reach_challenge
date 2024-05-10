@@ -18,19 +18,25 @@ def prepare_data(json_api_retrun):
     list_of_json_objects = []
     table_values = [] 
     #extract the json objects for each key in the data key; value object. 
-    for each in data_keys:
-        list_of_json_objects.append(json_api_retrun['data'][each])
-    #append the seperate blobs corresponding to the table name convention
-    #Cases_Dimension
-    table_values.append([f"'{json_api_retrun['data']['date']}'",json_api_retrun['data']['states']])
-    #Cases_Fact
-    table_values.append(list_of_json_objects[0])
-    #Testing_Fact
-    table_values.append(list_of_json_objects[1])
-    #Hospitalization_Fact
-    table_values.append(list_of_json_objects[2]['hospitalized'])
-    #Death_Fact
-    table_values.append(list_of_json_objects[2]['death'])
+    try:
+        for each in data_keys:
+            list_of_json_objects.append(json_api_retrun['data'][each])
+        #append the seperate blobs corresponding to the table name convention
+        #Field_Definitions_Dimension
+        #TODO: Implement ingestion of meta data for schema changes
+        #      Check if schema changed and insert only if changed and alert
+        #Cases_Dimension
+        table_values.append([f"'{json_api_retrun['data']['date']}'",json_api_retrun['data']['states']])
+        #Cases_Fact
+        table_values.append(list_of_json_objects[0])
+        #Testing_Fact
+        table_values.append(list_of_json_objects[1])
+        #Hospitalization_Fact
+        table_values.append(list_of_json_objects[2]['hospitalized'])
+        #Death_Fact
+        table_values.append(list_of_json_objects[2]['death'])
+    except Exception as e:
+        raise SystemExit(f"Key {e} does not exist - check if correct data is returned from the api")
     return table_values
 
 
