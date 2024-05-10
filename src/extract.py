@@ -4,7 +4,7 @@ import json
 from time import sleep
 from random import randint
 
-class api_data():
+class apiData():
     def __init__(self,api_response):
         self.api_response = api_response
     def read_json(self):
