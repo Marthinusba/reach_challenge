@@ -1,8 +1,3 @@
 requests==2.31.0
-#random==3.12.1
-#time
-#datetime
-#json
 pandas==2.0.3
 psycopg2-binary==2.9.9
-#uuid
