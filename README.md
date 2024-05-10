@@ -34,7 +34,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project ingests daily Covid-19 related data made available by the API described [here][https://covidtracking.com/data/api/version-2].
+The project ingests daily Covid-19 related data made available by the API described [here](https://covidtracking.com/data/api/version-2).
+
 The projects performas extraction, transfoarmation and loading processes on the data returned from the api. The data is returned as a JSON object and 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -44,7 +45,6 @@ The projects performas extraction, transfoarmation and loading processes on the 
 ### Built With
 
 * [![Python][python]][python-url]
-* [![React][React.js]][React-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

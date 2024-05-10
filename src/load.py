@@ -19,11 +19,11 @@ def execute_scripts_from_file(filename,connection):
     """
     # Open and read the file as a single buffer
     file_sql = open(filename, 'r')
-    sqlFile = file_sql.read()
+    sql_file = file_sql.read()
     file_sql.close()
 
     # all SQL commands (split on ';')
-    sql_commands = sqlFile.split(';')
+    sql_commands = sql_file.split(';')
 
     # Execute every command from the input file
     for command in sql_commands[:-1]:
