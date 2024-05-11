@@ -6,8 +6,15 @@ services:
           POSTGRES_USER: "postgres_user"
           POSTGRES_PASSWORD: "postgres_password"
           POSTGRES_DB: "postgres_db"
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres_user -d postgres_db"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
       networks:
       - etl_network
+      
+      
 
   python_program:
     build:
@@ -21,8 +28,13 @@ services:
       PG_DB: "postgres_db"
       DB_HOST: "docker_postgresql"
       CURRENT_IMAGE: "docker_python_image"
+    depends_on:
+      docker_postgresql:
+        condition: service_healthy
     networks:
       - etl_network
+
+    
 
 networks:
   etl_network:
