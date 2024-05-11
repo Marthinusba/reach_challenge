@@ -1,7 +1,7 @@
 -- Cases_Dimension Table
 CREATE TABLE IF NOT EXISTS Cases_Dimension (
     Cases_ID UUID NOT NULL PRIMARY KEY,
-    Last_Update_ET TIMESTAMP,
+    Last_Update_at TIMESTAMP,
     State_Number INT
 );
 
