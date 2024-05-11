@@ -1,4 +1,4 @@
-def prepare_data(json_api_retrun):
+def prepare_data(json_api_return):
     """
     Prepare data values to insert into seperate tables
 
@@ -14,29 +14,24 @@ def prepare_data(json_api_retrun):
 
     """
     #key values of top level json objects
-    data_keys = ['cases','testing','outcomes']
-    list_of_json_objects = []
-    table_values = [] 
-    #extract the json objects for each key in the data key; value object. 
+    data_keys = ['cases', 'testing', 'outcomes']
+    table_values = []
+
     try:
-        for each in data_keys:
-            list_of_json_objects.append(json_api_retrun['data'][each])
-        #append the seperate blobs corresponding to the table name convention
-        #Field_Definitions_Dimension
-        #TODO: Implement ingestion of meta data for schema changes
-        #      Check if schema changed and insert only if changed and alert
-        #Cases_Dimension
-        table_values.append([f"'{json_api_retrun['data']['date']}'",json_api_retrun['data']['states']])
-        #Cases_Fact
-        table_values.append(list_of_json_objects[0])
-        #Testing_Fact
-        table_values.append(list_of_json_objects[1])
-        #Hospitalization_Fact
-        table_values.append(list_of_json_objects[2]['hospitalized'])
-        #Death_Fact
-        table_values.append(list_of_json_objects[2]['death'])
-    except Exception as e:
-        raise SystemExit(f"Key {e} does not exist - check if correct data is returned from the api")
+        # Append separate blobs corresponding to the table name convention
+        # Cases_Dimension
+        table_values.append([f"'{json_api_return['data']['date']}'", json_api_return['data']['states']])
+
+        # Cases_Fact, Testing_Fact
+        for key in data_keys[:-1]:
+            table_values.append(json_api_return['data'][key])
+
+        # Hospitalization_Fact, Death_Fact
+        for key in ['hospitalized', 'death']:
+            table_values.append(json_api_return['data']['outcomes'][key])
+    except KeyError as e:
+        raise KeyError(f"Key '{e}' does not exist. Check if correct data is returned from the API")
+
     return table_values
 
 

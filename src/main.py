@@ -26,10 +26,12 @@ def main():
 
         tables = ['Cases_Dimension','Cases_Fact','Testing_Fact','Hospitalization_Fact','Death_Fact']
         current_date = '2021-01-02'#datetime.now().date() current date to get the covid data for today
-        api_url = "https://api.covidtracking.com/v2/us/daily/"+str(current_date)+".json"
+        api_url = f"https://api.covidtracking.com/v2/us/daily/{current_date}.json"
 
         #step to extract the daiky json blob from the api        
         api_return = apiData.read_json(call_api(api_url))
+        if not api_return:
+                return
         #step to prepare the data to be ingested
         prepared_values = prepare_data(api_return)
         #step to create the tables if not created and insert the daily data
