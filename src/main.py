@@ -2,7 +2,7 @@
 
 
 from datetime import datetime 
-from extract import call_api,apiData
+from extract import call_api,ApiData
 from transform import prepare_data
 from load import iterate_table_insert
 
@@ -28,7 +28,7 @@ def main():
         api_url = f"https://api.covidtracking.com/v2/us/daily/{current_date}.json"
 
         #step to extract the daiky json blob from the api        
-        api_return = apiData.read_json(call_api(api_url))
+        api_return = ApiData.read_json(call_api(api_url))
         if not api_return:
                 return
         #step to prepare the data to be ingested

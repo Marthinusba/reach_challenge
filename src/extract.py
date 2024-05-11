@@ -31,7 +31,7 @@ class ApiData:
         json_data : dict
             Parsed JSON data.
         """
-        json_data = json.loads(self.api_response)
+        json_data = json.loads(self)
         return json_data
 
 
@@ -68,4 +68,4 @@ def call_api(api_url):
         print(f"Request Exception: {e}")
         raise SystemExit(e)
 
-    return data
+    return json.dumps(data)
