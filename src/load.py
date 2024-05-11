@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.extras
 import uuid
 import os
 from transform import iterate_nested_json_for_loop
@@ -18,61 +19,37 @@ def execute_scripts_from_file(filename,connection):
 
     """
     # Open and read the file as a single buffer
-    file_sql = open(filename, 'r')
-    sql_file = file_sql.read()
-    file_sql.close()
-
-    # all SQL commands (split on ';')
-    sql_commands = sql_file.split(';')
+    with open(filename, 'r') as sql_file:
+        sql_commands = sql_file.read().split(';')
 
     # Execute every command from the input file
     for command in sql_commands[:-1]:
         try:
             connection.execute(command)
         except Exception as e:
-            print(e)
+            print(f"Error executing command: {e}")
 
-
-def put_into_database(values,table,unique_id):
+def insert_into_database(values, table, cursor,unique_id):
     """
-    Insert values into database
+    Insert values into a database table.
 
-    Insert transformed values into each table within the database
+    Parameters
     ----------
-    values: list
-        list of values
-    table: string
-        table name
-    unique_id: UUID
-        unique id associated with each entry
+    values : list
+        List of values to insert.
+    table : str
+        Table name.
+    cursor : psycopg2 cursor object
+        Cursor for database connection.
+
     Returns
     -------
     None
-
     """
-    #creates an connection to the databbase
-    #TODO: Add error handeling and testing to connection
-    conn = psycopg2.connect(database = os.getenv('PG_DB'),
-                            user = os.getenv('PG_USERNAME'),
-                            password = os.getenv('PG_PASSWORD'),
-                            host = os.getenv('DB_HOST'),
-                            port = "5432")
-    
-    cur = conn.cursor()  
-    #create tables if not exist
     try:
-        execute_scripts_from_file('create_tables.sql',cur)
-        conn.commit()
-    except:
-        conn.rollback()
-    #insert values into tables
-    try:
-        cur.execute(f"INSERT INTO {table} VALUES ('{unique_id}',{values})")
-        conn.commit()
+        cursor.execute(f"INSERT INTO {table} VALUES ('{unique_id}',{values})")
     except Exception as e:
-        print(e)
-        conn.rollback()
-    conn.close()
+        print(f"Error inserting into {table}: {e}")
 
 
 def iterate_table_insert(table_names,table_values):
@@ -90,17 +67,35 @@ def iterate_table_insert(table_names,table_values):
     None
 
     """
-    #create a random unique id to be used as dimension table primary id and fact tables
-    #foreign keys
+    # Create a random unique id to be used as dimension table primary id and fact tables foreign keys
     unique_id = uuid.uuid4()
-    for table_value,table in zip(table_values,table_names):
-        listed = []
-        #ensure that only values are inserted and no keys are included
-        if isinstance(table_value, dict):
-            lis_of_vals = iterate_nested_json_for_loop(table_value,listed)
-            values_to_enter = ','.join(f"{v}" for v in lis_of_vals)
-            put_into_database(values_to_enter,table,unique_id)
-        else:
-            values_to_enter = ','.join(f"{v}" for v in table_value)
-            put_into_database(values_to_enter,table,unique_id)
+    psycopg2.extras.register_uuid()
 
+    try:
+        # Connect to the database
+        conn = psycopg2.connect(database=os.getenv('PG_DB'),
+                                user=os.getenv('PG_USERNAME'),
+                                password=os.getenv('PG_PASSWORD'),
+                                host=os.getenv('DB_HOST'),
+                                port="5432")
+        cursor = conn.cursor()
+
+        # Create tables if not exist
+        execute_scripts_from_file('create_tables.sql', cursor)
+        conn.commit()
+
+        for table_value,table in zip(table_values,table_names):
+            #ensure that only values are inserted and no keys are included
+            if isinstance(table_value, dict):
+                list_of_vals = iterate_nested_json_for_loop(table_value,[])
+                values_to_enter = ','.join(f"{v}" for v in list_of_vals)
+                insert_into_database(values_to_enter,table,cursor,unique_id)
+            else:
+                values_to_enter = ','.join(f"{v}" for v in table_value)
+                insert_into_database(values_to_enter,table,cursor,unique_id)
+    except psycopg2.Error as e:
+        print(f"Error connecting to the database: {e}")
+    finally:
+        if conn:
+            conn.commit()
+            conn.close()

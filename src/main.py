@@ -2,7 +2,6 @@
 
 
 from datetime import datetime 
-import pandas as pd
 from extract import call_api,apiData
 from transform import prepare_data
 from load import iterate_table_insert
@@ -30,8 +29,8 @@ def main():
 
         #step to extract the daiky json blob from the api        
         api_return = apiData.read_json(call_api(api_url))
-        if not api_return:
-                return
+        #if not api_return:
+        #        return
         #step to prepare the data to be ingested
         prepared_values = prepare_data(api_return)
         #step to create the tables if not created and insert the daily data
