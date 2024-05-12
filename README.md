@@ -30,7 +30,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project ingests daily Covid-19-related data made available by the API described [here](https://covidtracking.com/data/api/version-2).
+The project ingests daily COVID-19-related data made available by the API described [here](https://covidtracking.com/data/api/version-2).
 
 The projects perform extraction, transformation and loading processes on the data returned from the API. The data is returned as a JSON object and 
 
@@ -49,6 +49,9 @@ Certain assumptions are made with the deployment of the projects, such as experi
 
 The ERD of the database is shown below:
 ![ERD](./erd.png)
+
+The database has been modelled according to the Star schema to represent the data and make the database optimal for querying.
+
 ### Prerequisites
 
 * git
