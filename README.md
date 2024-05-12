@@ -80,7 +80,7 @@ Steps to install and run the program
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-The current date is set as  ``current_date = '2021-01-01'```  in the ``main.py``` script to load example data. However, it should be changed to ``current_date = datetime.now().date()``` for daily updates.
+The current date is set as  ```current_date = '2021-01-01'```  in the ```main.py``` script to load example data. However, it should be changed to ```current_date = datetime.now().date()``` for daily updates.
 
 1. To access the Postgres database in docker to perform analysis.
     ```sh
