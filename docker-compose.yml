@@ -6,6 +6,7 @@ services:
           POSTGRES_USER: "postgres_user"
           POSTGRES_PASSWORD: "postgres_password"
           POSTGRES_DB: "postgres_db"
+      #check the status of the database if it is ready to receive connections
       healthcheck:
         test: ["CMD-SHELL", "pg_isready -U postgres_user -d postgres_db"]
         interval: 5s
@@ -28,6 +29,8 @@ services:
       PG_DB: "postgres_db"
       DB_HOST: "docker_postgresql"
       CURRENT_IMAGE: "docker_python_image"
+    #ensure the database is started and completed all initialisation tasks before
+    #running python program
     depends_on:
       docker_postgresql:
         condition: service_healthy
