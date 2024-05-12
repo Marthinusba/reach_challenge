@@ -30,9 +30,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project ingests daily Covid-19 related data made available by the API described [here](https://covidtracking.com/data/api/version-2).
+The project ingests daily Covid-19-related data made available by the API described [here](https://covidtracking.com/data/api/version-2).
 
-The projects performas extraction, transfoarmation and loading processes on the data returned from the api. The data is returned as a JSON object and 
+The projects perform extraction, transformation and loading processes on the data returned from the API. The data is returned as a JSON object and 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -45,7 +45,7 @@ The projects performas extraction, transfoarmation and loading processes on the 
 
 ## Getting Started
 
-Certain assumptions are made with the deploying of the projects, such as experience with git and linux commands and having git and docker installed.
+Certain assumptions are made with the deployment of the projects, such as experience with git and Linux commands and having git and docker installed.
 
 The ERD of the database is shown below:
 ![ERD](./erd.png)
@@ -56,7 +56,7 @@ The ERD of the database is shown below:
 
 ### Installation
 
-Steps to install and run program
+Steps to install and run the program
 
 1. Clone the repo
    ```sh
@@ -76,7 +76,7 @@ Steps to install and run program
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Currently the current date is set as  ```current_date = '2021-01-01'```  in the ```main.py``` script to load example data. But should be changed to ```current_date = datetime.now().date()``` for daily update.
+The current date is set as  ``current_date = '2021-01-01'```  in the ``main.py``` script to load example data. However, it should be changed to ``current_date = datetime.now().date()``` for daily updates.
 
 1. To access the Postgres database in docker to perform analysis.
     ```sh
@@ -88,7 +88,7 @@ Currently the current date is set as  ```current_date = '2021-01-01'```  in the 
     ```
 3. The password required is ```postgres_password```
 
-4. Example to query all the tabls
+4. Example to query all the tables
     ```sql
     select * from Cases_Dimension
     join Cases_Fact on Cases_Dimension.cases_id = Cases_Fact.cases_id
