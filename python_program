@@ -6,7 +6,6 @@ RUN mkdir -p $HOME
 
 COPY code-requirements.txt $HOME
 COPY src/* $HOME
-COPY main.py $HOME
 COPY create_tables.sql $HOME
 RUN pip install -r $HOME/code-requirements.txt
 
