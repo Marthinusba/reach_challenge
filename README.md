@@ -46,7 +46,7 @@ The projects perform extraction, transformation and loading processes on the dat
 
 ## Getting Started
 
-Certain assumptions are made with the deployment of the projects, such as experience with git and Linux commands and having git and docker installed.
+Certain assumptions are made with the deployment of the projects, such as experience with git and Unix commands and having git and docker installed.
 
 The ERD of the database is shown below:
 ![ERD](./erd.png)
