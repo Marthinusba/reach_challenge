@@ -109,7 +109,7 @@ The current date is set as  ```current_date = '2021-01-01'```  in the ```main.py
 * Include unit and integration testing
 * Ingest metadata, specifically the schema changes, to record any name changes to alert on breaking changes.
 * Setup a cron job to run the python program daily
-* Create documentation with pdoc
+* Create documentation with pydoc
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
