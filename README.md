@@ -23,6 +23,7 @@
         <li><a href="#installation">Installation</a></li>
         <li><a href="#usage">Usage</a></li>
 	<li><a href="#todo">Todo</a></li>
+	<li><a href="#consideration-to-put-into-production">Production consideration</a></li>      
       </ul>
     </li>
   </ol>
@@ -110,6 +111,10 @@ The current date is set as  ```current_date = '2021-01-01'```  in the ```main.py
 * Ingest metadata, specifically the schema changes, to record any name changes to alert on breaking changes.
 * Setup a cron job to run the python program daily
 * Create documentation with pydoc
+
+## Consideration to put into Production
+
+* Create a CI/CD pipeline to deploy the project to AWS ECS with an additional cron/orchestration tool to run the program on a daily basis. Unit and integration testing is performed during the CI/DC pipeline deployment. For the production version, logging should be introduced, better error handeling and alerting. Additionally, the secrets required should not be exposed and handled by the secrets manager.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
